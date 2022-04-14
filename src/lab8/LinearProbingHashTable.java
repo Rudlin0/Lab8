@@ -1,6 +1,6 @@
 package lab8;
 
-// Based on work by Segewick and Wayne (see the comment block at the end of this file)
+// Based on work by Sedgewick and Wayne (see the comment block at the end of this file)
 
 public class LinearProbingHashTable<K, V> {
 
