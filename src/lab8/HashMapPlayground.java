@@ -2,6 +2,11 @@ package lab8;
 import java.util.Random;
 
 public class HashMapPlayground {
+
+    /**
+     * Generates maps and fills them with pseudorandom values, 
+     * then runs and prints the results of the lab's experiment.
+     */
     public static void printExperimentalResultsTable() {
         Random random = new Random(42);
         System.out.printf(" L       Theoretical   Empirical\n");
