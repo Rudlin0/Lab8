@@ -3,7 +3,29 @@ package lab8;
 public class TitanProbeHashMap<K,V> extends LinearProbingHashTable<K,V> {
     @Override
     public String toString() {
-        return null;
+        String cellString = "";
+        for (int i = 0; i < 80; i++) {
+            if (values[i] != null) {
+                cellString = cellString.concat("O");
+            }
+            else {
+                cellString = cellString.concat("E");
+            }
+        }
+        cellString = cellString.concat("\n");
+
+        for (int j = 1; j < tableSize / 80; j++) {
+            for (int k = 0; k < 80; k++) {
+                if(values[j*k+80] != null) {
+                    cellString = cellString.concat("O");
+                }
+                else {
+                    cellString = cellString.concat("E");
+                }
+            }
+            cellString = cellString.concat("\n");
+        }
+        return cellString;
     }
 
     public double empiricalAverageSearchMissCost() {
@@ -21,18 +43,18 @@ public class TitanProbeHashMap<K,V> extends LinearProbingHashTable<K,V> {
     }
 
     public static double empiricalAverageSearchMissCost(String str) {
-        char[] keys = str.toCharArray();
+        char[] values = str.toCharArray();
         int searchMissSumTotal = 0;
-        for (int i = 0; i < keys.length; i++) {
+        for (int i = 0; i < values.length; i++) {
             int searchMissSum = 1;
-            int j = (i + 1) % keys.length;
-            while (keys[j] != 'E') {
+            for (int j = (i + 1) % values.length; 
+                 values[j] != 'E';
+                 j = (j + 1) % values.length) {
                 searchMissSum++;
-                j++;
             }
             searchMissSumTotal += searchMissSum;
         }
-        return (double) searchMissSumTotal / (double) keys.length;
+        return (double) searchMissSumTotal / (double) values.length;
     }
 
     public TitanProbeHashMap(int capacity) {
